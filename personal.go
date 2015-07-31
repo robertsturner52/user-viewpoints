@@ -14,12 +14,6 @@ type personalModel struct {
 	ListItems []string
 	Images    []Image
 }
-type Image struct {
-	Username string
-	Title    string
-	ImageID  string
-	Caption  string
-}
 
 func handlePersonalImages(res http.ResponseWriter, req *http.Request) {
 	ctx := appengine.NewContext(req)

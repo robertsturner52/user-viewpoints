@@ -2,11 +2,19 @@ package viewpoints
 
 import (
 	"net/http"
+	"strings"
 
 	"github.com/nu7hatch/gouuid"
 	"google.golang.org/appengine"
 	"google.golang.org/appengine/datastore"
 )
+
+type Image struct {
+	Username string
+	Title    string
+	ImageID  string
+	Caption  string
+}
 
 type imageModel struct {
 	Session  Session
@@ -19,33 +27,44 @@ type imageModel struct {
 func handleImageForm(res http.ResponseWriter, req *http.Request) {
 	ctx := appengine.NewContext(req)
 	session := getSession(ctx, req)
+	imageID := strings.SplitN(req.URL.Path, "/", 3)[2]
 	username := session.Username
 	if username == "" {
 		http.Redirect(res, req, "/loginform", 302)
 		return
 	}
+	image := &Image{
+		Username: username,
+	}
+	var key *datastore.Key
+	if imageID != "" {
+		key = datastore.NewKey(ctx, "Image", imageID, 0, nil)
+		err := datastore.Get(ctx, key, image)
+		if err != nil {
+			http.Error(res, err.Error(), 500)
+			return
+		}
+	} else {
+		id, _ := uuid.NewV4()
+		key = datastore.NewKey(ctx, "Image", id.String(), 0, nil)
+		image.ImageID = id.String()
+	}
+
 	if req.Method == "POST" {
-		title := req.FormValue("title")
-		caption := req.FormValue("caption")
+		image.Title = req.FormValue("title")
+		image.Caption = req.FormValue("caption")
 		imageFile, _, err := req.FormFile("image")
-		if err != nil {
+		if err == nil {
+			defer imageFile.Close()
+			err = putFile(ctx, image.ImageID, imageFile)
+			if err != nil {
+				http.Error(res, err.Error(), 500)
+				return
+			}
+		} else if imageID == "" {
 			http.Error(res, err.Error(), 500)
 			return
 		}
-		defer imageFile.Close()
-		imageID, _ := uuid.NewV4()
-		err = putFile(ctx, imageID.String(), imageFile)
-		if err != nil {
-			http.Error(res, err.Error(), 500)
-			return
-		}
-		image := &Image{
-			Username: username,
-			Title:    title,
-			Caption:  caption,
-			ImageID:  imageID.String(),
-		}
-		key := datastore.NewKey(ctx, "Image", image.ImageID, 0, nil)
 		_, err = datastore.Put(ctx, key, image)
 		if err != nil {
 			http.Error(res, err.Error(), 500)
@@ -56,9 +75,9 @@ func handleImageForm(res http.ResponseWriter, req *http.Request) {
 	}
 	model := &imageModel{
 		Username: session.Username,
-		Title:    "title",
-		ImageID:  "imageID",
-		Caption:  "caption",
+		Title:    image.Title,
+		ImageID:  image.ImageID,
+		Caption:  image.Caption,
 	}
 	err := tpls.ExecuteTemplate(res, "imageform", model)
 	if err != nil {
