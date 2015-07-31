@@ -1,0 +1,48 @@
+{{define "listform"}}<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Upload a List</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+		<div class="title">
+			<h1>Upload List Favorite Viewpoints</h1>
+			<h2>for {{.Session.Username}}</h2>
+		</div>
+		<nav>
+			<ul>
+				<li><a href="/">Home Page</a></li>
+        <li><a href="/user/{{.Session.Username}}">My Page</a></li>
+				<li><a href="/imageform">Load an Image</a></li>
+        <li><a href="/logout">Logout</a></li>
+				<li><a href="/userslist">List of Users</a></li>
+			</ul>
+		</nav>
+	</header>
+  <main>
+    <div class="leftcol">
+      <div class="vertical">
+        <h1>m<br>a<br>k<br>e<br> <br>a<br> <br>l<br>i<br>s<br>t<br></h1>
+      </div>
+    </div>
+    <div class="rightcol">
+      {{if .List}}
+      <h2>edit your viewpoints list</h2>
+      <h2>(no numbers necessary)</h2>
+      {{else}}
+      <h2>rank your favorite viewpoints</h2>
+      <h2>in an automatically numbered list</h2>
+      {{end}}
+      <form method="POST">
+        <div class="textarea"><label>Favorites List:<br>
+          <textarea name="list" placeholder="Make a list of your favorite viewpoints here.">{{.List}}</textarea>
+        </label></div>
+        <input type="submit">
+      </form>
+    </div>
+  </main>
+</body>
+</html>
+{{end}}

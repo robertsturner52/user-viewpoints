@@ -1,0 +1,172 @@
+/*@import url("https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.1/css/lightbox.css");*/
+@import url("http://fonts.googleapis.com/css?family=Iceland");
+* {
+	box-sizing: border-box;
+}
+header {
+	width: 100%;
+	background: #888;
+	color: white;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+nav ul {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+}
+main ol {
+	left-margin: 25px;
+}
+body {
+	background: #bbb;
+	max-width: 1000px;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	max-width: 1000px;
+	font-family: sans-serif;
+}
+main {
+	width: 100%;
+	background: #ccc;
+	margin: auto;
+	padding: 20px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+
+}
+.leftcol {
+	padding-left: 10px;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+}
+#bobslist {
+	align-items: flex-start;
+}
+.rightcol {
+	flex: 2;
+}
+main .leftcol h1 {
+	margin: auto;
+	text-align: center;
+	font-family: iceland;
+	font-size: 24pt;
+}
+#register {
+	font-size: 34pt;
+}
+.vertical {
+	flex: 1;
+	display: flex;
+}
+main .rightcol h2 {
+	text-align: left;
+	display: block;
+	font-family: iceland;
+	font-size: 24pt;
+	line-height: 1.3;
+}
+main .rightcol form {
+	margin-top: 25px;
+}
+form {
+}
+textarea {
+	height: 100px;
+	width: 200px;
+	background-color: #ddd;
+}
+input {
+	background-color: #ccc;
+}
+.leftcol .edit, .rightcol .edit {
+	width: 50px;
+	text-align: center;
+	margin: 0 0 10px 0;
+	padding: 3px 5px;
+	border: solid 2px #333;
+	border-radius: 5px;
+	display: block;
+}
+main .rightcol input, main .rightcol button, main .rightcol .textarea {
+	width: 300px;
+	text-align: center;
+	margin: 10px 0 10px 0;
+	padding: 5px;
+	border: solid 2px #333;
+	border-radius: 5px;
+	display: block;
+}
+.rightcol h4 {
+	text-align: center;
+	margin: 10px auto 10px auto;
+	font-size: 20pt;
+}
+.rightcol p {
+	width: 75%;
+	margin: 5px auto 10 auto;
+}
+.imagebox {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	align-items: center;
+	padding: 10px 30px 0px 30px;
+	width: 100%;
+}
+.imagebox h4 {
+	margin: 10px auto 10px auto;
+}
+img {
+	width: 80%;
+}
+header {
+	padding: 20px;
+}
+h1, h2 {
+	margin: 0;
+}
+nav ul li {
+	text-align: center;
+	font-size: 12pt;
+	list-style: none;
+	margin: 8px;
+}
+nav a {
+	text-decoration: none;
+	color: white;
+}
+header h1 {
+	display: block;
+	font-size: 18pt;
+	margin-top: 10px;
+	line-height: 1.3;
+}
+header h2 {
+	font-size: 16pt;
+	font-weight: normal;
+	line-height: 1.3;
+}
+#bobs-list h3 {
+	text-align: center;
+	font-size: 22pt;
+}
+#bobs-list li {
+	font-size: 14pt;
+}
+footer {
+	color: white;
+	background-color: #888;
+	text-align: center;
+}
+footer p a {
+	text-decoration: none;
+	color: #ddd;
+}

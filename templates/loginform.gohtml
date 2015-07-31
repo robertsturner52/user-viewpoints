@@ -1,0 +1,51 @@
+{{define "loginform"}}<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Login Page</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <div class="title">
+      <h1>Login to edit your page</h1>
+		</div>
+  	<nav>
+  		<ul>
+  			<li><a href="/">Home</a></li>
+        <li><a href="/register">Register</a></li>
+        <li><a href="/user/">My Page</a></li>
+  			<li><a href="/userslist">List of Users</a></li>
+  		</ul>
+  	</nav>
+  </header>
+  <main>
+    <div class="leftcol">
+      <div class="vertical">
+        <h1>l<br>o<br>g<br> <br>i<br>n<br></h1>
+      </div>
+    </div>
+    <div class="rightcol">
+      <h2>edit or change the contents of your personal page</h2>
+      {{if .Error}}
+      <div class="error">Login failed. {{.Error}}</div>
+      {{end}}
+      <form method="POST">
+        <label>Username:<br>
+          <input type="text" name="username" placeholder="username">
+        </label><br>
+        <label>Password:<br>
+          <input type="password" name="password" placeholder="Password">
+        </label><br>
+        <input type="submit">
+      </form>
+      {{if .Session.Username}}
+      <button name="listBtn"><a href="/listform">Make or Edit My Favorites List</a></button>
+      <button name="imageBtn"><a href="/imageform">Upload an Image or Edit Image Content</a></button>
+      <button name="logoutBtn"><a href="/logout">Logout</a></button>
+      {{end}}
+    </div>
+  </main>
+</body>
+</html>
+{{end}}

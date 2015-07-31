@@ -1,0 +1,68 @@
+{{define "imageform"}}<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Upload an Image</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <div class="title">
+      <h1>Upload Viewpoint Photos</h1>
+  		<h2>for {{.Username}}</h2>
+		</div>
+		<nav>
+			<ul>
+				<li><a href="/">Home</a></li>
+        <li><a href="/user/{{.Session.Username}}">My Page</a></li>
+				<li><a href="/listform">Edit My List</a></li>
+        <li><a href="/imageform">Load Another Image</a></li>
+        <li><a href="/logout">Logout</a></li>
+				<li><a href="/userslist">List of Users</a></li>
+			</ul>
+		</nav>
+	</header>
+  <main>
+    <div class="leftcol">
+      <div class="vertical">
+        <h1>p<br>o<br>s<br>t<br> <br>y<br>o<br>u<br>r<br> <br>p<br>h<br>o<br>t<br>o<br>s<br></h1>
+      </div>
+    </div>
+    <div class="rightcol">
+      <h2>or edit the photo title and caption</h2>
+      <h2>of your viewpoint pictures</h2>
+      {{if .ImageID}}
+      <form method="POST" enctype="multipart/form-data">
+        <label>Change the image title:<br>
+          <input type="text" name="title" value="{{.Title}}" placeholder="Change the image title">
+        </label><br>
+        <label>Change the Image?:<br>
+          <input type="file"
+                 name="image">
+        </label><br>
+        <div class="textarea"><label>Edit the caption for your image:<br>
+          <textarea name="caption" placeholder="Edit the caption for your image.">{{.Caption}}</textarea>
+        </label></div><br>
+        <input type="submit">
+      </form>
+      <button type="button" name="deleteBtn">Delete Entry</button>
+      {{else}}
+      <form method="POST" enctype="multipart/form-data">
+        <label>Title:<br>
+          <input type="text" name="title" value="" placeholder="Image Title">
+        </label><br>
+        <label>New Image:<br>
+          <input type="file"
+                 name="image">
+        </label><br>
+        <label>Caption:<br>
+          <textarea name="caption" placeholder="Write a caption for your image."></textarea>
+        </label><br>
+        <input type="submit">
+      </form>
+      {{end}}
+    </div>
+  </main>
+</body>
+</html>
+{{end}}

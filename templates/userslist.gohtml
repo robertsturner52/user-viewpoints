@@ -1,0 +1,43 @@
+{{define "userslist"}}<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>List of Users</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <div class="title">
+  		<h2>Check out the personal lists</h2>
+      <h2>of these other users</h2>
+    </div>
+		<nav>
+			<ul>
+				<li><a href="/">Home</a></li>
+        {{if .Session.Username}}
+          <li><a href="/user/">My Page</a></li>
+  				<li><a href="/listform">Edit My List</a></li>
+          <li><a href="/imageform">Load Another Image</a></li>
+          <li><a href="/logout">Logout</a></li>
+        {{end}}
+			</ul>
+		</nav>
+	</header>
+  <main>
+    <div class="leftcol">
+      <div class="vertical">
+        <h1>l<br>i<br>s<br>t<br> <br>o<br>f<br> <br>u<br>s<br>e<br>r<br>s<br></h1>
+      </div>
+    </div>
+    <div class="rightcol">
+      <h2>Registered Website Users:</h2>
+      {{range .Profiles}}
+      <ul>
+        <li><a href="/user/{{.Username}}">{{.Username}}</a></li>
+      </ul>
+      {{end}}
+    </div>
+  </main>
+</body>
+</html>
+{{end}}

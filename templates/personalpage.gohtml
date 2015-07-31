@@ -1,0 +1,62 @@
+{{define "personalpage"}}<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{{.Username}}'s Favorites</title>
+	<link href="/css/lightbox.css" rel="stylesheet">
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+	<header>
+		<div class="title">
+			<h1>Favorite Viewpoints</h1>
+			<h2>for {{.Username}}</h2>
+		</div>
+		<nav>
+			<ul>
+				<li><a href="/">Home</a></li>
+				{{if .Session.Username}}
+					<li><a href="/listform">Edit My List</a></li>
+					<li><a href="/imageform">Load a New Image</a></li>
+					<li><a href="/logout">Logout</a></li>
+				{{else}}
+					<li><a href="/loginform">Login</a></li>
+				{{end}}
+				<li><a href="/userslist">Users List</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		{{if .ListItems}}
+		<div class="leftcol">
+			<ol>
+			{{range .ListItems}}
+			<li>{{.}}</li>
+			{{end}}
+			</ol>
+			{{if eq .Session.Username .Username}}
+			<form action="/listform">
+				<button class="edit">edit</button>
+			</form>
+			{{end}}
+		</div>
+		<div class="rightcol">
+			{{range .Images}}
+			<div class="imagebox">
+				<h4>{{.Title}}</h4>{{if eq $.Session.Username .Username}}
+				<form action="/imageform/{{.ImageID}}">
+					<button class="edit">edit</button>
+				</form>
+				{{end}}
+				<a href="/personal-images/{{.ImageID}}" data-lightbox="roadtrip"><img src="/personal-images/{{.ImageID}}"></a>
+				<p>{{.Caption}}</p>
+			</div>
+			{{end}}
+		</div>
+		{{end}}
+	</main>
+	<footer><p>website &copy;2015 &ndash; by Robert S Turner &ndash; see my other sites at <a href="http://greatviewpoints.appspot.com/" target="_blank">The Seven Laws of the Great View</a> and <a href="http://www.robertsturner52.yolasite.com/" target="_blank">Robert Stuart Turner</a></p></footer></body>
+<script src="/css/lightbox-plus-jquery.js"></script>
+</body>
+</html>
+{{end}}

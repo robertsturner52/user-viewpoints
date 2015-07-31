@@ -1,0 +1,78 @@
+{{define "homepage"}}<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Great Viewpoints</title>
+  <link href="/css/lightbox.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <header>
+		<div class="title">
+			<h1>Favorite Viewpoints</h1>
+			<h2>of robertsturner52 [website administrator]</h2>
+		</div>
+		<nav>
+			<ul>
+				<li><a href="/">Home Page</a></li>
+				{{if .Session.Username}}
+					<li><a href="/user/{{.Session.Username}}">My Page</a></li>
+          <li><a href="/listform">Edit My List</a></li>
+					<li><a href="/imageform">Load & Edit Images</a></li>
+					<li><a href="/logout">Logout</a></li>
+        {{else}}
+          <li><a href="/register">Register</a></li>
+					<li><a href="/loginform">Login</a></li>
+				{{end}}
+				<li><a href="/userslist">List of Users</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<div class="leftcol" id="bobs-list">
+			<h3>These are my favorite viewpoints:</h3>
+			<ol>
+				<li>Mt. Diablo (Central Valley)</li>
+        <li>White Mountain (California)</li>
+        <li>Point Sublime (Grand Canyon)</li>
+        <li>Oh-My-Gosh Point (Yosemite)</li>
+        <li>Glacier Point (Yosemite)</li>
+        <li>Clouds Rest (Yosemite)</li>
+        <li>South Rim Trail (Big Bend, Texas)</li>
+        <li>Telescope Peak (Death Valley)</li>
+				<li>Harpers Corner (Dinosaur, Utah)</li>
+				<li>Monument Point (Grand Canyon)</li>
+				<li>Powell Point (Table Cliffs Plateau, Utah)</li>
+        <li>Sierra View (White Mountains, California)</li>
+        <li>Mt. Sill (Sierra Nevada)</li>
+        <li>Navajo Mountain (Utah)</li>
+				<li>Granite Mountain (Nevada)</li>
+        <li>Cockscomb (Yosemite)</li>
+				<li>Eagle Peak (Yosemite)</li>
+        <li>Bryce Canyon Rim (Utah)</li>
+				<li>Mt. Whitney (Sierra Nevada)</li>
+        <li>Mt. Scott (Crater Lake)</li>
+        <li>Tukunikivats (Utah)</li>
+        <li>Vollmer Peak (Berkeley Hills)</li>
+        <li>Mt. Jefferson (Nevada)</li>
+				<li>Mt. Sheridan (Yellowstone)</li>
+			</ol>
+		</div>
+		<div class="rightcol">
+			<div class="imagebox">
+				<h4>Mount Diablo looking east</h4>
+				<a href="/images/Mt-Diablo-view-east.jpg" data-lightbox="roadtrip"><img src="/images/Mt-Diablo-view-east.jpg"></a>
+				<p>From Mt. Diablo one can see over a hundred miles of the length of the Sierra Nevada and the Central Valley in front of the mountains in one direction...</p>
+			</div>
+			<div class="imagebox">
+				<h4>Mount Diablo looking west</h4>
+				<a href="/images/Mt-Diablo-view-west.jpg" data-lightbox="roadtrip"><img src="/images/Mt-Diablo-view-west.jpg"></a>
+				<p>...and the entire San Francisco Bay Area and the Pacific Ocean beyond in the other direction.</p>
+			</div>
+		</div>
+	</main>
+  <footer><p>website &copy;2015 &ndash; by Robert S Turner &ndash; see my other sites at <a href="http://greatviewpoints.appspot.com/" target="_blank">The Seven Laws of the Great View</a> and <a href="http://www.robertsturner52.yolasite.com/" target="_blank">Robert Stuart Turner</a></p></footer></body>
+<script src="/css/lightbox-plus-jquery.js"></script>
+</body>
+</html>
+{{end}}
